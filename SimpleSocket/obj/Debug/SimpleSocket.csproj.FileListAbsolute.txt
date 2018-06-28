@@ -1,0 +1,6 @@
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\bin\Debug\SimpleSocket.exe.config
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\obj\Debug\SimpleSocket.csprojResolveAssemblyReference.cache
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\bin\Debug\SimpleSocket.exe
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\bin\Debug\SimpleSocket.pdb
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\obj\Debug\SimpleSocket.exe
+C:\新建文件夹\Projects 2\SimpleSocket\SimpleSocket\obj\Debug\SimpleSocket.pdb
