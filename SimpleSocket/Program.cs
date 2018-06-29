@@ -4,75 +4,112 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Runtime.InteropServices;
+using System.Threading;
+
+using System.IO;
 
 namespace SimpleSocket
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            Para para = new Para();
 
-            para.host = "127.0.0.1";
-            para.port = "9527";
+            Thread thread = new Thread(Listen);
+            thread.Start();
 
-            //SocketResult socketResult = SocketCpp.socketabcd(para);
+            Console.ReadLine();
+        }
 
-            SocketCpp.getSocket(ref para);
+        static void Listen()
+        {
+            SocketCpp socket = null;
 
-            AcceptPara acceptPara = new AcceptPara();
+            SocketCpp clientSocket;
 
-            SocketCpp.getAccept(para.socket, ref acceptPara);
+            Thread thread;
 
-            ReceivePara receivePara = new ReceivePara();
-
-            receivePara.socket = acceptPara.socket;
-            //receivePara.buffer = new byte[32];
-            receivePara.bufferLength = 32;
-
-            byte[] bytes = new byte[32];
-
-            SendPara sendPara = new SendPara();
-
-            sendPara.socket = acceptPara.socket;
-            sendPara.bufferLength = 2;
-            
-            byte[] bytes2 = { 98, 98 };
-
-            while(true)
+            try
             {
-                SocketCpp.getReceive(ref receivePara, bytes);
-                SocketCpp.getSend(ref sendPara, bytes2);
+                socket = SocketCpp.CreateAndListen("127.0.0.1", "9527");
+
+                while (true)
+                {
+                    clientSocket = socket.Accept();
+
+                    thread = new Thread(Receive);
+
+                    thread.Start(clientSocket);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.ToString());
+
+            }
+
+            try
+            {
+                if (socket != null)
+                {
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                }
+
+                //SocketCpp.WSACleanup();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+           
+        }
+        static void Receive(object obj)
+        {
+            SocketCpp socket = (SocketCpp)obj;
+
+            byte[] bytes;
+            int receiveLength;
+            int sentLength;
+
+            try
+            {
+                while (true)
+                {
+                    bytes = new byte[32];
+
+                    receiveLength = socket.Receive(bytes);
+
+                    if (receiveLength == 0)
+                    {
+                        break;
+                    }
+
+                    sentLength = socket.Send(new byte[] { 98, 98 });
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            try
+            {
+                if (socket != null)
+                {
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
             
-
             
-            //SocketResult socketResult = (SocketResult)Marshal.PtrToStructure(p, typeof(SocketResult));
-
-            string a = "";
-
-            //const string DEFAULT_PORT = "27015";
-
-//struct addrinfo *result = NULL, *ptr = NULL, hints;
-            //IntPtr pResult , pptr ;
-            //Native.addrinfo hints = new Native.addrinfo();
-
-            
-            
-            //ZeroMemory(&amp;hints, sizeof (hints));
-//hints.ai_family = AF_INET;
-//hints.ai_socktype = SOCK_STREAM;
-//hints.ai_protocol = IPPROTO_TCP;
-//hints.ai_flags = AI_PASSIVE;
-
-//// Resolve the local address and port to be used by the server
-//iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
-//if (iResult != 0) {
-//    printf("getaddrinfo failed: %d\n", iResult);
-//    WSACleanup();
-//    return 1;
-//}
         }
     }
 }

@@ -43,6 +43,7 @@ struct Para
 
 void  getSocket(Para* para)
 {
+	printf("new wersion  2  ");
 	//SocketResult socketResult;
 	//printf("errorCode: %d\n", socketResult.errorCode);
 	//socketResult.errorCode = 100;
@@ -70,6 +71,7 @@ void  getSocket(Para* para)
 		//errorMsg = "WSAStartup failed with error: ";
 		//*errorCode = iResult;
 		//return &socketResult;
+		return;
 	}
 
 	ZeroMemory(&hints, sizeof(hints));
@@ -85,7 +87,8 @@ void  getSocket(Para* para)
 		//printf("getaddrinfo failed with error: %d\n", iResult);
 		para->errorMsg = "getaddrinfo failed with error: ";
 		para->errorCode = iResult;
-		WSACleanup();
+		//WSACleanup();
+		return;
 		//return 1;
 		//return &socketResult;
 	}
@@ -97,7 +100,8 @@ void  getSocket(Para* para)
 		para->errorCode = WSAGetLastError();
 		//printf("socket failed with error: %ld\n", WSAGetLastError());
 		freeaddrinfo(result);
-		WSACleanup();
+		//WSACleanup();
+		return;
 		//return 1;
 		//return &socketResult;
 	}
@@ -109,8 +113,9 @@ void  getSocket(Para* para)
 		para->errorCode = WSAGetLastError();
 		//printf("bind failed with error: %d\n", WSAGetLastError());
 		freeaddrinfo(result);
-		closesocket(ListenSocket);
-		WSACleanup();
+		//closesocket(ListenSocket);
+		//WSACleanup();
+		return;
 		//return &socketResult;
 	}
 
@@ -121,8 +126,9 @@ void  getSocket(Para* para)
 		para->errorMsg = "listen failed with error: ";
 		para->errorCode = WSAGetLastError();
 		//printf("listen failed with error: %d\n", WSAGetLastError());
-		closesocket(ListenSocket);
-		WSACleanup();
+		//closesocket(ListenSocket);
+		//WSACleanup();
+		return;
 		//return &socketResult;
 	}
 
@@ -152,9 +158,10 @@ void getAccept(unsigned int ListenSocket, AcceptPara* para)
 		para->errorMsg = "accept failed with error: ";
 		para->errorCode = WSAGetLastError();
 		//printf("accept failed with error: %d\n", WSAGetLastError());
-		closesocket(ListenSocket);
-		WSACleanup();
+		//closesocket(ListenSocket);
+		//WSACleanup();
 		//return 1;
+		return;
 	}
 
 	para->socket = ClientSocket;
@@ -190,9 +197,10 @@ void getReceive(ReceivePara* para, char* bytes)
 		//closesocket(ClientSocket);
 		para->errorMsg = "recv failed with error: ";
 		para->errorCode = WSAGetLastError();
-		closesocket(para->socket);
-		WSACleanup();
+		//closesocket(para->socket);
+		//WSACleanup();
 		//return 1;
+		return;
 	}
 
 	para->resultLength = iResult;
@@ -219,10 +227,26 @@ void getSend(SendPara* para, char* bytes)
 		para->errorMsg = "send failed with error: ";
 		para->errorCode = WSAGetLastError();
 		//printf("send failed with error: %d\n", WSAGetLastError());
-		closesocket(para->socket);
-		WSACleanup();
+		//closesocket(para->socket);
+		//WSACleanup();
 		//return 1;
+		return;
 	}
 	para->resultLength = iSendResult;
 	//printf("Bytes sent: %d\n", iSendResult);
+}
+
+int getShutdown(unsigned int socket, int how)
+{
+	return shutdown(socket, how);
+}
+
+int getClose(unsigned int socket)
+{
+	return closesocket(socket);
+}
+
+int getWSACleanup()
+{
+	return WSACleanup();
 }

@@ -20,4 +20,11 @@ extern "C"
 	_declspec(dllexport) void getReceive(ReceivePara* para, char* bytes);
 
 	_declspec(dllexport) void getSend(SendPara* para, char* bytes);
+
+	_declspec(dllexport) int getShutdown(unsigned int socket, int how);
+
+	_declspec(dllexport) int getClose(unsigned int socket);
+
+	_declspec(dllexport) int getWSACleanup();
+	
 }
