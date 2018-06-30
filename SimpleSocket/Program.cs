@@ -20,10 +20,12 @@ namespace SimpleSocket
             thread.Start();
 
             Console.ReadLine();
+
         }
 
         static void Listen()
         {
+
             SocketCpp socket = null;
 
             SocketCpp clientSocket;
@@ -36,6 +38,7 @@ namespace SimpleSocket
 
                 while (true)
                 {
+
                     clientSocket = socket.Accept();
 
                     thread = new Thread(Receive);
@@ -46,27 +49,23 @@ namespace SimpleSocket
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine(ex.ToString());
-
+                Console.WriteLine("Listen while error: " + ex.ToString());
             }
 
-            try
+
+            Console.WriteLine("Listen Close.");
+
+                    
+            if (socket != null)
             {
-                if (socket != null)
-                {
-                    socket.Shutdown(SocketShutdown.Both);
-                    socket.Close();
-                }
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+            }
 
-                //SocketCpp.WSACleanup();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            SocketCpp.WSACleanup();
            
         }
+
         static void Receive(object obj)
         {
             SocketCpp socket = (SocketCpp)obj;
@@ -83,8 +82,10 @@ namespace SimpleSocket
 
                     receiveLength = socket.Receive(bytes);
 
+                    //   receiveLength == 0  表示 客户端 连接 已关闭
                     if (receiveLength == 0)
                     {
+                        Console.WriteLine("receiveLength == 0");
                         break;
                     }
 
@@ -96,20 +97,15 @@ namespace SimpleSocket
                 Console.WriteLine(ex.ToString());
             }
 
-            try
+
+            Console.WriteLine("close socket");
+
+            if (socket != null)
             {
-                if (socket != null)
-                {
-                    socket.Shutdown(SocketShutdown.Both);
-                    socket.Close();
-                }
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
             }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            
-            
+
         }
     }
 }

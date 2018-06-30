@@ -32,7 +32,7 @@ namespace SimpleSocket
             if (para.errorCode != 0)
             {
                 ex = new SimpleSocketException(
-                    "CreateAndListen 发生错误， " + para.errorMsg + "  errorCode：" + para.errorCode,
+                    "CreateAndListen 发生错误， errorCode：" + para.errorCode,
                     para.errorCode);
         
                 throw ex;
@@ -49,11 +49,10 @@ namespace SimpleSocket
 
             SimpleSocketException ex;
 
-            //if (para.errorCode != 0)
-            if (para.errorMsg != null)
+            if (para.errorCode != 0)
             {
                 ex = new SimpleSocketException(
-                    "Accept 发生错误， " + para.errorMsg + "  errorCode：" + para.errorCode,
+                    "Accept 发生错误， errorCode：" + para.errorCode,
                     para.errorCode);
 
                 throw ex;
@@ -76,7 +75,7 @@ namespace SimpleSocket
             if (para.errorCode != 0)
             {
                 ex = new SimpleSocketException(
-                    "Receive 发生错误， " + para.errorMsg + "  errorCode：" + para.errorCode,
+                    "Receive 发生错误， errorCode：" + para.errorCode,
                     para.errorCode);
 
                 throw ex;
@@ -99,7 +98,7 @@ namespace SimpleSocket
             if (para.errorCode != 0)
             {
                 ex = new SimpleSocketException(
-                    "Send 发生错误， " + para.errorMsg + "  errorCode：" + para.errorCode,
+                    "Send 发生错误， errorCode：" + para.errorCode,
                     para.errorCode);
 
                 throw ex;
@@ -107,8 +106,6 @@ namespace SimpleSocket
 
             return para.resultLength;
         }
-
-        
 
         public int Shutdown(SocketShutdown how)
         {
@@ -154,65 +151,34 @@ namespace SimpleSocket
         Both
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
+    //[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Ansi)]
     struct CreatePara
     {
-        //[MarshalAs(UnmanagedType.LPWStr)]
         public string host;
-        //[MarshalAs(UnmanagedType.LPWStr)]
         public string port;
-        //[MarshalAs(UnmanagedType.U4)]
         public uint socket;
-
-        //[MarshalAs(UnmanagedType.LPWStr)]
-        public string errorMsg;
-
-        //[MarshalAs(UnmanagedType.I4)]
         public int errorCode;
     }
 
     struct AcceptPara
     {
         public uint socket;
-
-        //[MarshalAs(UnmanagedType.LPWStr)]
-        public string errorMsg;
-
-        //[MarshalAs(UnmanagedType.I4)]
         public int errorCode;
     }
 
     struct ReceivePara
     {
         public uint socket;
-
-        //[MarshalAs(UnmanagedType.LPWStr)]
-        public string errorMsg;
-
-        
         public int errorCode;
-
-        public byte[] buffer;
         public int bufferLength;
         public int resultLength;
-
-        
     }
 
     struct SendPara
     {
         public uint socket;
-
-        //[MarshalAs(UnmanagedType.LPWStr)]
-        public string errorMsg;
-
-
         public int errorCode;
-
-        public byte[] buffer;
         public int bufferLength;
         public int resultLength;
-
-
     }
 }

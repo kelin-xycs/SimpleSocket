@@ -1,4 +1,4 @@
-﻿生成启动时间为 2018/6/27 12:29:54。
+﻿生成启动时间为 2018/6/30 11:21:21。
      1>项目“C:\新建文件夹\Projects 2\SimpleSocket\ConsoleApplication1\ConsoleApplication1.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\ConsoleApplication1.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ConsoleApplication1.cpp
@@ -11,4 +11,4 @@
 
 生成成功。
 
-已用时间 00:00:01.12
+已用时间 00:00:02.26

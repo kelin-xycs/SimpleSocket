@@ -113,7 +113,7 @@ int _tmain(int argc, _TCHAR* argv[])
 				printf("send failed with error: %d\n", WSAGetLastError());
 				closesocket(ClientSocket);
 				WSACleanup();
-				return 1;
+				//return 1;
 			}
 			printf("Bytes sent: %d\n", iSendResult);
 		}
@@ -123,7 +123,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			printf("recv failed with error: %d\n", WSAGetLastError());
 			closesocket(ClientSocket);
 			WSACleanup();
-			return 1;
+			//return 1;
 		}
 
 	} while (iResult > 0);

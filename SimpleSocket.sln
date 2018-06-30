@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication1", "Cons
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Project2", "Win32Project2\Win32Project2.vcxproj", "{94ABB614-2449-421C-B433-771FE7DA1A19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.csproj", "{00F093AC-E678-4468-A910-F2E53F64A1E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,16 @@ Global
 		{94ABB614-2449-421C-B433-771FE7DA1A19}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{94ABB614-2449-421C-B433-771FE7DA1A19}.Release|Win32.ActiveCfg = Release|Win32
 		{94ABB614-2449-421C-B433-771FE7DA1A19}.Release|Win32.Build.0 = Release|Win32
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{00F093AC-E678-4468-A910-F2E53F64A1E3}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
