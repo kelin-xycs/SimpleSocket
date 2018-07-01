@@ -41,7 +41,7 @@ WSASocket()  方法 是 一个 非托管方法， 也是 Win Socket 2 的 标准
 
 而 作为 非托管 对象 。 我 在想的是， 微软内部使用的 非托管对象 ，是不是 只有  COM ？  或者 还有 其他 规范 ？
 
-WSASocket 可以实现 Overlap 方式 的 Receive 和 Send ，  Overlap 的 Send 还要理解， Overlap 的 Receive 不知是 干什么 ？
+WSASocket 可以实现 Overlap 方式 的 Receive 和 Send ，  Overlap 的 Send 还好理解， Overlap 的 Receive 不知是 干什么 ？
 通过 查看 System.Net.Sockets Socket 的 代码， 
 可以看到  Socket.Receive() 和 Socket.Send() 方法 里面 调用的 仍然是 recv() 和 send() 方法（非托管方法），
 并不是 WSARecv() 和 WSASend() 方法（非托管方法） 。 
